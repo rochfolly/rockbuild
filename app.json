@@ -1,0 +1,12 @@
+{
+  "name": "rockbuild",
+  "displayName": "rockbuild",
+  "expo": {
+    "name": "rockbuild",
+    "slug": "rockbuild",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
