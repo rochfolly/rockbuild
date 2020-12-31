@@ -5,9 +5,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { createStackNavigator } from '@react-navigation/stack';
 import { connect } from 'react-redux';
 
-import { setFirebase } from '../redux/actions/actions';
+import { setFirebase, setCurrentUser } from '../redux/actions/actions';
 import LoginScreen from '../components/Authentication/LoginScreen';
 import RegisterScreen from '../components/Authentication/RegisterScreen';
+import HomeScreen from '../components/Home/HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 
 const AuthStack = createStackNavigator();
@@ -26,13 +27,20 @@ class RockBuildApp extends Component {
 
   componentDidMount(){
     this.props.setFirebase();
+    // this.props.setCurrentUser('cedfolly@gmail.com', 'enfendel25');
   }
 
   render() {
 
     return (
         <NavigationContainer>
-          <AuthStackNavigator />
+          {!this.props.userID ? (
+            <AuthStackNavigator />
+            )
+            :
+            (
+            <HomeScreen />
+          )}
         </NavigationContainer>
       );
     
@@ -47,6 +55,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setFirebase: () => {dispatch(setFirebase())},
+  setCurrentUser: (email, password) => {dispatch(setCurrentUser(email, password))}
 })
 
 export default connect(

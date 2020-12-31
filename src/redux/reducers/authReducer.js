@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
               user: user,
               userID: uid,
               username: name,
-              settings
+              settings: settings
             };
           }
         default:

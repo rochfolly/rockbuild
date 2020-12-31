@@ -16,7 +16,7 @@ class LoginScreen extends Component {
   }
 
   signIn(){
-    this.props.setCurrentUser(this.state.email, this.state.password);
+    this.props.setCurrentUser('cedfolly@gmail.com', 'enfendel25');
     //this.props.navigation.navigate("Home");
   }
 

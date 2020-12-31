@@ -2,12 +2,19 @@ import firebase  from '../../database/firebaseInit';
 import { actionTypes } from '../actions/actionTypes';
 import { setCurrentUser, setCriterias, setEvents } from '../actions/actions';
 import { initialUserData }  from '../../database/initialData';
+import { getCurrentUserID } from '../selectors';
 
 ////// DATABASE MIDDLEWARE //////
 export const database = store => next => action => {
+  let userID = '1tL91ObFEpRi9ZGoU6u7BZOXDHO2' // getCurrentUserID(store.getState());
   switch(action.type){
 
     case actionTypes.INIT_FIREBASE: 
+      action.payload = firebase;
+      next(action);
+      break;
+    
+    case actionTypes.INIT_TODAY: 
       action.payload = firebase;
       next(action);
       break;
@@ -70,5 +77,13 @@ export const database = store => next => action => {
           alert(error.message);
           }); 
         break;
+    
+    case actionTypes.INIT_EVENTS:
+        firebase.database().ref(userID + '/events').once('value', (eventsData) => {
+          action.payload = {events: Object.values(eventsData.val())}
+          next(action)
+        }, (error) => {
+          console.log(error)
+        })
     }
 }

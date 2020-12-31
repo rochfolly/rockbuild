@@ -4,6 +4,14 @@ export const setFirebase = _ => ({
   type: actionTypes.INIT_FIREBASE,
 })
 
+export const initToday = _ => ({
+  type: actionTypes.INIT_TODAY,
+})
+
+export const initEvents = _ => ({
+  type: actionTypes.INIT_EVENTS,
+})
+
 export const createUserAccount = (name, email, password) => ({
   type: actionTypes.CREATE_USER,
   payload: {name, email, password}
